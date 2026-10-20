@@ -1,0 +1,15 @@
+{
+	"name": "pharmasalesfactory",
+	"properties": {
+		"trustModeClaimForMi": {
+			"value": "Disabled",
+			"editable": true
+		}
+	},
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "79648b3e-cacb-4776-81c1-55d4daf78648",
+		"tenantId": "5dea42a2-5a0a-4aa8-8c7f-2717338ebfbc"
+	}
+}
