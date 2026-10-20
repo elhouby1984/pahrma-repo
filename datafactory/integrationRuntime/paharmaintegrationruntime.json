@@ -1,0 +1,6 @@
+{
+	"name": "paharmaintegrationruntime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
