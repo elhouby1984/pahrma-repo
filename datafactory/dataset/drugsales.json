@@ -1,0 +1,75 @@
+{
+	"name": "drugsales",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "pharmaa",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "FileServerLocation",
+				"fileName": "in_June-2026.csv"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": [
+			{
+				"name": "Sector",
+				"type": "String"
+			},
+			{
+				"name": "ATC4",
+				"type": "String"
+			},
+			{
+				"name": "Corporation",
+				"type": "String"
+			},
+			{
+				"name": "Product",
+				"type": "String"
+			},
+			{
+				"name": "Pack",
+				"type": "String"
+			},
+			{
+				"name": "Launch Date",
+				"type": "String"
+			},
+			{
+				"name": "Strength",
+				"type": "String"
+			},
+			{
+				"name": "Retail Price",
+				"type": "String"
+			},
+			{
+				"name": "NFC3",
+				"type": "String"
+			},
+			{
+				"name": "Period",
+				"type": "String"
+			},
+			{
+				"name": "Calendar Year",
+				"type": "String"
+			},
+			{
+				"name": "Units",
+				"type": "String"
+			},
+			{
+				"name": "LC Value",
+				"type": "String"
+			}
+		]
+	}
+}
