@@ -1,0 +1,6 @@
+{
+	"name": "pharmanewintgration",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
