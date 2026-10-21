@@ -1,0 +1,25 @@
+{
+	"name": "trigger1",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "pharmasales",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2026-10-21T09:06:00",
+				"endTime": "2026-10-24T09:06:00",
+				"timeZone": "Egypt Standard Time"
+			}
+		}
+	}
+}
