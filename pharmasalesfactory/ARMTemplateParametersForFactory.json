@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "pharmasalesfactory"
+		},
+		"AzureDataLakeStorage1_accountKey": {
+			"value": ""
+		},
+		"pharmaa_password": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1_properties_typeProperties_url": {
+			"value": "https://storagepharmaegypt.dfs.core.windows.net/"
+		},
+		"pharmaa_properties_typeProperties_host": {
+			"value": "C:\\phar"
+		},
+		"pharmaa_properties_typeProperties_userId": {
+			"value": "influencer-pc3\\nourhan"
+		}
+	}
+}
