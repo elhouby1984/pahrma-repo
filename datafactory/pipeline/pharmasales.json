@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Copy data1",
+				"name": "sales",
 				"type": "Copy",
 				"dependsOn": [],
 				"policy": {
@@ -26,14 +26,95 @@
 							"type": "DelimitedTextReadSettings"
 						}
 					},
-					"enableStaging": false
+					"sink": {
+						"type": "DelimitedTextSink",
+						"storeSettings": {
+							"type": "AzureBlobFSWriteSettings"
+						},
+						"formatSettings": {
+							"type": "DelimitedTextWriteSettings",
+							"quoteAllText": true,
+							"fileExtension": ".txt"
+						}
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
 				},
 				"inputs": [
 					{
-						"referenceName": "drugsales",
+						"referenceName": "drugsalessource",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "sotrageone",
 						"type": "DatasetReference"
 					}
 				]
+			},
+			{
+				"name": "success",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "sales",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-09.uaenorth.logic.azure.com:443/workflows/92074796305449b58fc21ed096cedf17/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=Qz_0RDh7PduARXqO96eqof_2mzmyDrE2Mn-4QJ0d53k",
+					"body": {
+						"value": "{\n  \"pipelineName\": \"@{pipeline().Pipeline}\",\n  \"status\": \"Succeeded\",\n  \"runId\": \"@{pipeline().RunId}\",\n  \"time\": \"@{utcnow()}\"\n}",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Failed",
+				"type": "WebActivity",
+				"dependsOn": [
+					{
+						"activity": "sales",
+						"dependencyConditions": [
+							"Failed"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "0.12:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"method": "POST",
+					"url": "https://prod-09.uaenorth.logic.azure.com:443/workflows/92074796305449b58fc21ed096cedf17/triggers/When_an_HTTP_request_is_received/paths/invoke?api-version=2016-10-01&sp=%2Ftriggers%2FWhen_an_HTTP_request_is_received%2Frun&sv=1.0&sig=Qz_0RDh7PduARXqO96eqof_2mzmyDrE2Mn-4QJ0d53k",
+					"body": {
+						"value": "{\n  \"pipelineName\": \"@{pipeline().Pipeline}\",\n  \"status\": \"failed\",\n  \"runId\": \"@{pipeline().RunId}\",\n  \"time\": \"@{utcnow()}\"\n}",
+						"type": "Expression"
+					}
+				}
 			}
 		],
 		"annotations": []
